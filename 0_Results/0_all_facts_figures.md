@@ -719,14 +719,10 @@ $ 0.98
 
 # Graphs
 
-## Money Distributions
-
 ![](0_all_facts_figures_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->![](0_all_facts_figures_files/figure-gfm/unnamed-chunk-10-2.png)<!-- -->
 
 ![](0_all_facts_figures_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->![](0_all_facts_figures_files/figure-gfm/unnamed-chunk-11-2.png)<!-- -->
 
 ![](0_all_facts_figures_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->![](0_all_facts_figures_files/figure-gfm/unnamed-chunk-12-2.png)<!-- -->
-
-## Top 10 Companies
 
 ![](0_all_facts_figures_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
