@@ -12,5 +12,8 @@ I decided to use this data to get a better idea of what industries and companies
 
 This project will be updated throughout June and July, and will be updated bi-weekly. 
 
-## Chapters
+## Markdowns
 
+#### Chapter 1:
+
+<p align="left">Basic</p> <p align="center">Extended</p> <p align="right">Results</p>
