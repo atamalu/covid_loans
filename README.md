@@ -20,6 +20,7 @@ This project will be updated throughout June and July, and the scripts will be r
 
 #### Part 2: Overall Loan Distribution
 
+* [Basic](https://github.com/atamalu/covid_loans/blob/master/2_Overall_Distributions/2_covid_loan_distributions_basic.md)
 * [Extended](https://github.com/atamalu/covid_loans/blob/master/2_Overall_Distributions/2_covid_loan_distributions.md) 
 * [Results](https://github.com/atamalu/covid_loans/blob/master/0_Results/2_loan_distributions_results.md)
 
