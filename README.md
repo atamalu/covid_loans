@@ -16,4 +16,6 @@ This project will be updated throughout June and July, and will be updated bi-we
 
 #### Chapter 1: Data Preparation
 
-<span align="left">Basic</p> <span align="center">Extended</p> <span align="right">Results</p>
+<pre>[Basic]()</pre>
+<pre>[Extended]()</pre>
+<pre>[Results]()</pre>
