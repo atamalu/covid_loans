@@ -1,0 +1,23 @@
+---
+title: "Untitled"
+output: github_document
+---
+
+```{r, include = FALSE, warning = FALSE, message = FALSE}
+options(scipen = 999)
+library(dplyr)
+library(ggplot2)
+library(ggthemr) # set theme for graphs
+library(kableExtra)
+source('../plot_themes/bar_graph_theme.R')
+source('../functions/add_thousands_comma.R')
+
+### Graphs
+p1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants_graph.rds') # bar graph of top 10 parent company recipients of loans and grants
+
+### Other
+df1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants.rds') # data frame of top 10 parent company recipients of loans and grants
+
+perc.grants <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_grants_received_perc.rds') # percentage of money in grants received by top 10 relative to all allocated money
+perc.loans <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_received_perc.rds') # percentage of money in loans received by top 10 relative to all allocated money
+```

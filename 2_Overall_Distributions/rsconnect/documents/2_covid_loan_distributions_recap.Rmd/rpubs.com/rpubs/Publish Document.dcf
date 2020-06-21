@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/630130/b7f1c4fbb4f345adb285513b9638d60d
+bundleId: https://api.rpubs.com/api/v1/document/630130/b7f1c4fbb4f345adb285513b9638d60d
+url: http://rpubs.com/atamalu/630130
+when: 1592678441.24259

@@ -1,0 +1,77 @@
+---
+title: "Results: COVID-19 Loan Distributions"
+output: github_document
+---
+
+All information was gathered using data from https://data.covidstimuluswatch.org/prog.php?&detail=export_csv . Some recipient names are cut off in the file.
+
+```{r, include = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ggthemr) # set theme for graphs
+library(kableExtra)
+source('../plot_themes/bar_graph_theme.R')
+source('../functions/add_thousands_comma.R')
+
+### Graphs
+grant.p1 <- readRDS('../2_Overall_Distributions/r_objects/p_lower_90_grant.rds') # histograms of lower 90%
+loan.p1 <- readRDS('../2_Overall_Distributions/r_objects/p_lower_90_loan.rds')
+
+grant.p2 <- readRDS('../2_Overall_Distributions/r_objects/p_upper_10_grant.rds') # histograms of upper 0.5%-10%
+loan.p2 <- readRDS('../2_Overall_Distributions/r_objects/p_upper_10_loan.rds')
+
+grant.p3 <- readRDS('../2_Overall_Distributions/r_objects/p_upper_05_grant.rds') # histograms of upper 0.5%
+loan.p3 <- readRDS('../2_Overall_Distributions/r_objects/p_upper_05_loan.rds')
+
+### Other
+grant.perc1 <- readRDS('../2_Overall_Distributions/r_objects/grant_500k_1m_perc.rds') # percent recipients of between 500k & 1m 
+loan.perc1 <- readRDS('../2_Overall_Distributions/r_objects/loan_500k_1m_perc.rds')
+
+grant.df1 <- readRDS('../2_Overall_Distributions/r_objects/grant_400m_plus_comps.rds') # names of recipients of $400m or more
+loan.df1 <- readRDS('../2_Overall_Distributions/r_objects/loan_400m_plus_comps.rds')
+```
+
+```{r, include = FALSE}
+### data munging
+grant.df1$`Grant Amount (millions)` <- add_thousands_comma(grant.df1$`Grant Amount (millions)`)
+grant.df1$`Grant Amount (millions)` <- paste('$', grant.df1$`Grant Amount (millions)`)
+
+loan.df1$`Loan Amount (millions)` <- add_thousands_comma(loan.df1$`Loan Amount (millions)`)
+loan.df1$`Loan Amount (millions)` <- paste('$', loan.df1$`Loan Amount (millions)`)
+```
+
+## Facts
+
+* <B>`r grant.perc1`%</B> of grant recipients were given between \$500k and \$1m
+* <B>`r loan.perc1`%</B> of loan recipients were given between \$500k and \$1m
+* <B>`r nrow(grant.df1)`</B> grant recipients were given \$400m or more
+* <B>`r nrow(loan.df1)`</B> loan recipients were given \$400m or more
+
+## Tables
+
+```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
+kable(grant.df1, caption = 'Companies Receiving COVID-19 Grants of over $400m')
+```
+
+```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
+kable(loan.df1, caption = 'Companies Receiving COVID-19 Loans of over $400m')
+```
+
+## Graphs
+
+The below graphs show how COVID-19 grants & loans were distributed amongst the lower 90% of recipients
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+grant.p1; loan.p1
+```
+
+The below graphs show how COVID-19 grants & loans were distributed amongst the top 10% through top 0.5% of recipients
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+grant.p2; loan.p2
+```
+
+The below graphs show how COVID-19 grants & loans were distributed amongst the top 0.5% of recipients
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+grant.p3; loan.p3
+```

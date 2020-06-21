@@ -1,0 +1,75 @@
+---
+title: "Results: Top 10 COVID-19 Grant & Loan Recipients"
+subtitle: "for parent companies"
+output: github_document
+---
+
+All information was gathered using data from https://data.covidstimuluswatch.org/prog.php?&detail=export_csv . Some recipient names are cut off in the file.
+
+```{r, include = FALSE, warning = FALSE, message = FALSE}
+options(scipen = 999)
+library(dplyr)
+library(ggplot2)
+library(ggthemr) # set theme for graphs
+library(kableExtra)
+source('../plot_themes/bar_graph_theme.R')
+source('../functions/add_thousands_comma.R')
+
+### Graphs
+p1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants_graph.rds') # bar graph of top 10 parent company recipients of loans and grants
+
+### Other
+df1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants.rds') # data frame of top 10 parent company recipients of loans and grants
+
+perc.grants <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_grants_received_perc.rds') # percentage of money in grants received by top 10 relative to all allocated money
+perc.loans <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_received_perc.rds') # percentage of money in loans received by top 10 relative to all allocated money
+```
+
+```{r, include = FALSE}
+### data munging
+grant.df1 <- df1 %>% 
+  ungroup() %>%
+  filter(award_type == 'grant') %>%
+  select(`Parent Company` = p_company, award_amount_mil) %>%
+  mutate(`Grant Amount (billions)` = round((award_amount_mil / 1000), 2)) %>%
+  mutate(`Grant Amount (billions)` = format(`Grant Amount (billions)`, scientific = FALSE, digits = 2)) %>%
+  select(-award_amount_mil)
+
+loan.df1 <- df1 %>% 
+  filter(award_type == 'loan') %>%
+  ungroup() %>%
+  select(`Parent Company` = p_company, award_amount_mil) %>%
+  mutate(`Loan Amount (billions)` = round((award_amount_mil / 1000), 2)) %>%
+  mutate(`Loan Amount (billions)` = format(`Loan Amount (billions)`, scientific = FALSE, digits = 2)) %>%
+  select(-award_amount_mil)
+
+grant.df1$`Grant Amount (billions)` <- paste('$', grant.df1$`Grant Amount (billions)`)
+loan.df1$`Loan Amount (billions)` <- paste('$', loan.df1$`Loan Amount (billions)`)
+```
+
+```{r, include = FALSE}
+### in-line text
+total.grant.money <- paste0('$', round(sum(df1$award_amount[df1$award_type == 'grant']) / 1000000000, 1))
+total.loan.money <- paste0('$', round(sum(df1$award_amount[df1$award_type == 'loan']) / 1000000000, 1))
+```
+
+## Facts
+
+* The top 10 parent company grant recipients were given around <B>`r total.grant.money` billion dollars</B> - about <B>`r perc.grants`%</B> of the distributed grant funds
+* The top 10 parent company loan recipients were given around <B>`r total.loan.money` billion dollars</B> - about <B>`r perc.loans`%</B> of the distributed loan funds
+
+## Tables
+
+```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
+kable(grant.df1, caption = 'Top 10 Parent Companies Receiving COVID-19 Grants')
+```
+
+```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
+kable(loan.df1, caption = 'Top 10 Parent Companies Receiving COVID-19 Loans')
+```
+
+## Graphs
+
+```{r, fig.width=13, echo = FALSE, warning = FALSE, message = FALSE}
+p1
+```
