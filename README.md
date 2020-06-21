@@ -12,7 +12,7 @@ I decided to use this data to get a better idea of what industries and companies
 * full, "extended" markdowns for recreating results and figures
 * recap of results and figures alone for factual and sharing purposes
 
-This project will be updated throughout June and July, and the scripts will be re-ran biweekly with updated data.
+This project will be updated throughout June and July, and the scripts will be re-ran biweekly with updated data. Please cite me if using any of this material elsewhere.
 
 ## Directory
 
