@@ -14,6 +14,6 @@ This project will be updated throughout June and July, and will be updated bi-we
 
 ## Markdowns
 
-#### Chapter 1:
+#### Chapter 1: Data Preparation
 
-<p align="left">Basic</p> <p align="center">Extended</p> <p align="right">Results</p>
+<span align="left">Basic</p> <span align="center">Extended</p> <span align="right">Results</p>
