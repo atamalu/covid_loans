@@ -11,6 +11,44 @@ library(ggthemr) # set theme for graphs
 library(kableExtra)
 source('../plot_themes/bar_graph_theme.R')
 source('../functions/add_thousands_comma.R')
+```
+
+```{r, include = FALSE, warning = FALSE, message = FALSE}
+##################
+##### Part 2 #####
+##################
+
+### Graphs
+pt2.grant.p1 <- readRDS('../2_Overall_Distributions/r_objects/p_lower_90_grant.rds') # histograms of lower 90%
+pt2.loan.p1 <- readRDS('../2_Overall_Distributions/r_objects/p_lower_90_loan.rds')
+
+pt2.grant.p2 <- readRDS('../2_Overall_Distributions/r_objects/p_upper_10_grant.rds') # histograms of upper 0.5%-10%
+pt2.loan.p2 <- readRDS('../2_Overall_Distributions/r_objects/p_upper_10_loan.rds')
+
+pt2.grant.p3 <- readRDS('../2_Overall_Distributions/r_objects/p_upper_05_grant.rds') # histograms of upper 0.5%
+pt2.loan.p3 <- readRDS('../2_Overall_Distributions/r_objects/p_upper_05_loan.rds')
+
+### Other
+pt2.grant.perc1 <- readRDS('../2_Overall_Distributions/r_objects/grant_500k_1m_perc.rds') # percent recipients of between 500k & 1m 
+pt2.loan.perc1 <- readRDS('../2_Overall_Distributions/r_objects/loan_500k_1m_perc.rds')
+
+pt2.grant.df1 <- readRDS('../2_Overall_Distributions/r_objects/grant_400m_plus_comps.rds') # names of recipients of $400m or more
+pt2.loan.df1 <- readRDS('../2_Overall_Distributions/r_objects/loan_400m_plus_comps.rds')
+```
+
+```{r, include = FALSE}
+### data munging
+pt2.grant.df1$`Grant Amount (millions)` <- add_thousands_comma(pt2.grant.df1$`Grant Amount (millions)`)
+pt2.grant.df1$`Grant Amount (millions)` <- paste('$', pt2.grant.df1$`Grant Amount (millions)`)
+
+pt2.loan.df1$`Loan Amount (millions)` <- add_thousands_comma(pt2.loan.df1$`Loan Amount (millions)`)
+pt2.loan.df1$`Loan Amount (millions)` <- paste('$', pt2.loan.df1$`Loan Amount (millions)`)
+```
+
+```{r, include = FALSE, warning = FALSE, message = FALSE}
+##################
+##### Part 3 #####
+##################
 
 ### Graphs
 pt3.p1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants_graph.rds') # bar graph of top 10 parent company recipients of loans and grants
@@ -40,12 +78,61 @@ pt3.loan.df1 <- pt3.df1 %>%
   mutate(`Loan Amount (billions)` = format(`Loan Amount (billions)`, scientific = FALSE, digits = 2)) %>%
   select(-award_amount_mil)
 
+### for tables
 pt3.grant.df1$`Grant Amount (billions)` <- paste('$', pt3.grant.df1$`Grant Amount (billions)`)
 pt3.loan.df1$`Loan Amount (billions)` <- paste('$', pt3.loan.df1$`Loan Amount (billions)`)
+
+### for in-line text
+pt3.total.grant.money <- paste0('$', round(sum(pt3.df1$award_amount[pt3.df1$award_type == 'grant']) / 1000000000, 1))
+pt3.total.loan.money <- paste0('$', round(sum(pt3.df1$award_amount[pt3.df1$award_type == 'loan']) / 1000000000, 1))
 ```
 
-## Facts
+# Facts
 
-## Tables
+* <B>`r pt2.grant.perc1`%</B> of grant recipients were given between \$500k and \$1m
+* <B>`r pt2.loan.perc1`%</B> of loan recipients were given between \$500k and \$1m
+* <B>`r nrow(pt2.grant.df1)`</B> grant recipients were given \$400m or more
+* <B>`r nrow(pt2.loan.df1)`</B> loan recipients were given \$400m or more
 
-## Graphs
+* The top 10 parent company grant recipients were given around <B>`r pt3.total.grant.money` billion dollars</B> - about <B>`r pt3.perc.grants`%</B> of the distributed grant funds
+* The top 10 parent company loan recipients were given around <B>`r pt3.total.loan.money` billion dollars</B> - about <B>`r pt3.perc.loans`%</B> of the distributed loan funds
+
+# Tables
+
+```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
+kable(pt2.grant.df1, caption = 'Companies Receiving COVID-19 Grants of over $400m')
+```
+
+```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
+kable(pt2.loan.df1, caption = 'Companies Receiving COVID-19 Loans of over $400m')
+```
+
+```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
+kable(pt3.grant.df1, caption = 'Top 10 Parent Companies Receiving COVID-19 Grants')
+```
+
+```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
+kable(pt3.loan.df1, caption = 'Top 10 Parent Companies Receiving COVID-19 Loans')
+```
+
+# Graphs
+
+## Money Distributions
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+pt2.grant.p1; pt2.loan.p1
+```
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+pt2.grant.p2; pt2.loan.p2
+```
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+pt2.grant.p3; pt2.loan.p3
+```
+
+## Top 10 Companies
+
+```{r, fig.width=14.5, echo = FALSE, warning = FALSE, message = FALSE}
+pt3.p1
+```

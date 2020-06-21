@@ -46,6 +46,9 @@ loan.df1$`Loan Amount (millions)` <- paste('$', loan.df1$`Loan Amount (millions)
 * <B>`r nrow(grant.df1)`</B> grant recipients were given \$400m or more
 * <B>`r nrow(loan.df1)`</B> loan recipients were given \$400m or more
 
+* The top 10 parent company grant recipients were given around <B>`r total.grant.money` billion dollars</B> - about <B>`r perc.grants`%</B> of the distributed grant funds
+* The top 10 parent company loan recipients were given around <B>`r total.loan.money` billion dollars</B> - about <B>`r perc.loans`%</B> of the distributed loan funds
+
 ## Tables
 
 ```{r, echo = FALSE, fig.show="hold", out.width="50%", warning = FALSE, message = FALSE}
