@@ -70,6 +70,6 @@ kable(loan.df1, caption = 'Top 10 Parent Companies Receiving COVID-19 Loans')
 
 ## Graphs
 
-```{r, fig.width=13, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, fig.width=14, echo = FALSE, warning = FALSE, message = FALSE}
 p1
 ```
