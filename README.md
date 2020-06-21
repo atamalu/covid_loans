@@ -1,5 +1,7 @@
 # COVID-19 Loan Data (United States)
 
+For all facts and figures, please click [here](https://github.com/atamalu/covid_loans/blob/master/0_Results/0_all_facts_figures.md).
+
 ## Introduction
 
 Up until recent negotiations, the U.S. Department of Treasury had no legitimate intentions of releasing grant and loan data. Curious taxpayers had to simply wonder who their money was being distributed to, and potentially even if some of it was going to politicians and allies' shell companies. As a response, <i>Good Jobs First</i> and <i>Grassroot Connection</i> released a project providing the next best thing: data gathered through SEC filings. They also include a good bit of information on company accountability. For more details on the data, please see [their website](https://covidstimuluswatch.org/sources).
