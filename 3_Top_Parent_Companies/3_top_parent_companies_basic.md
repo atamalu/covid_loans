@@ -1,4 +1,4 @@
-Part 3: Top Parent Company Recipients (extended)
+Part 3: Top Parent Company Recipients
 ================
 
 In part 2, we looked into how grant & loan money was distributed amongst
@@ -12,11 +12,8 @@ First, load the packages and read the data from part 1.
 ``` r
 options(scipen = 999)
 library(dplyr)
-library(stringr)
 library(ggplot2) # for graphing
-library(ggthemr) # set theme for graphs
-source('../plot_themes/bar_graph_theme.R')
-source('../functions/add_thousands_comma.R')
+theme_set(theme_bw())
 
 df <- read.csv('../data/formatted_loan_data_6_17.csv', header = TRUE)
 ```
@@ -75,14 +72,12 @@ top10.df$award_amount_mil <- top10.df$award_amount / 1000000
 
 p1 <- ggplot(top10.df %>% group_by(p_company)) +
   geom_bar(aes(x = p_company, y = award_amount_mil), stat = 'identity') +
-  scale_x_discrete() +
-  facet_grid(award_type ~ .) +
-  theme.tweaks.bar
+  facet_grid(award_type ~ .)
 
 p1
 ```
 
-![](3_top_parent_companies_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](3_top_parent_companies_basic_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
 This visualization shows that:
 
@@ -93,41 +88,19 @@ This visualization shows that:
 So, let’s try a stacked bar graph.
 
 ``` r
-top10.df$`Award Type` <- top10.df$award_type
 top10.df$company_title <- gsub(' |-', '\n', top10.df$p_company) # wrap x-axis labels so they don't overlap
 
-### re-order nightmare for ggplot2
-lbls <- top10.df %>%
-  ungroup() %>%
-  arrange(desc(award_amount)) %>%
-  select(company_title) %>%
-  distinct() %>%
-  unlist()
-names(lbls) <- NULL
-
-top10.df$company_title <- factor(top10.df$company_title, 
-                                 levels = lbls)
-
-### now graph
 p2 <- ggplot(top10.df) +
-  geom_bar(aes(x = company_title, y = award_amount_mil, fill = `Award Type`), stat = 'identity') +
-  scale_y_continuous(limits = c(0, 6000),
-                     breaks = seq(0, 6000, 1000),
-                     labels = c('$ 0', '$ 1.0', '$ 2.0', '$ 3.0', '$ 4.0', '$ 5.0', '$ 6.0'),
-                     expand = c(0,0)) +
+  geom_bar(aes(x = company_title, y = award_amount_mil, fill = award_type), stat = 'identity') +
   labs(
     title = 'Total COVID-19 Loans and Grants by Parent Company',
-    y = 'Dollars (in billions)',
-    x = '',
-    legend = 'Award Type'
-  ) +
-  scale_x_discrete() +
-  theme.tweaks.bar
-
+    x = 'Company',
+    y = 'Dollars (in billions)'
+  )
 p2
 ```
 
-![](3_top_parent_companies_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](3_top_parent_companies_basic_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 This helps us better visualize the data that is mixed between loans and
 grants with some overlapping companies. I want to note a couple of
@@ -148,6 +121,7 @@ top.grants <- sum(top10.df$award_amount[top10.df$award_type == 'grant'])
 
 perc.grants <- (top.grants / all.grants) * 100
 perc.grants <- round(perc.grants, 2)
+
 print(perc.grants)
 ```
 
@@ -170,5 +144,4 @@ print(perc.loans)
 
     ## [1] 13.54
 
-It turns out that 10 parent companies received about 13.54% of all grant
-money.
+The top 10 parent companies received about 13.54% of all grant money.
