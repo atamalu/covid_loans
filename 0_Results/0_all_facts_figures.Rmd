@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "COVID-19 Facts and Figures"
 output: github_document
 ---
 
@@ -13,11 +13,39 @@ source('../plot_themes/bar_graph_theme.R')
 source('../functions/add_thousands_comma.R')
 
 ### Graphs
-p1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants_graph.rds') # bar graph of top 10 parent company recipients of loans and grants
+pt3.p1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants_graph.rds') # bar graph of top 10 parent company recipients of loans and grants
 
 ### Other
-df1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants.rds') # data frame of top 10 parent company recipients of loans and grants
+pt3.df1 <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_grants.rds') # data frame of top 10 parent company recipients of loans and grants
 
-perc.grants <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_grants_received_perc.rds') # percentage of money in grants received by top 10 relative to all allocated money
-perc.loans <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_received_perc.rds') # percentage of money in loans received by top 10 relative to all allocated money
+pt3.perc.grants <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_grants_received_perc.rds') # percentage of money in grants received by top 10 relative to all allocated money
+pt3.perc.loans <- readRDS('../3_Top_Parent_Companies/r_objects/top_10_loans_received_perc.rds') # percentage of money in loans received by top 10 relative to all allocated money
 ```
+
+```{r, include = FALSE}
+### data munging
+pt3.grant.df1 <- pt3.df1 %>% 
+  ungroup() %>%
+  filter(award_type == 'grant') %>%
+  select(`Parent Company` = p_company, award_amount_mil) %>%
+  mutate(`Grant Amount (billions)` = round((award_amount_mil / 1000), 2)) %>%
+  mutate(`Grant Amount (billions)` = format(`Grant Amount (billions)`, scientific = FALSE, digits = 2)) %>%
+  select(-award_amount_mil)
+
+pt3.loan.df1 <- pt3.df1 %>% 
+  filter(award_type == 'loan') %>%
+  ungroup() %>%
+  select(`Parent Company` = p_company, award_amount_mil) %>%
+  mutate(`Loan Amount (billions)` = round((award_amount_mil / 1000), 2)) %>%
+  mutate(`Loan Amount (billions)` = format(`Loan Amount (billions)`, scientific = FALSE, digits = 2)) %>%
+  select(-award_amount_mil)
+
+pt3.grant.df1$`Grant Amount (billions)` <- paste('$', pt3.grant.df1$`Grant Amount (billions)`)
+pt3.loan.df1$`Loan Amount (billions)` <- paste('$', pt3.loan.df1$`Loan Amount (billions)`)
+```
+
+## Facts
+
+## Tables
+
+## Graphs
