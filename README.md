@@ -26,5 +26,6 @@ This project will be updated throughout June and July, and the scripts will be r
 
 #### Part 3: Top 10 Parent Companies
 
+* [Basic](https://github.com/atamalu/covid_loans/blob/master/3_Top_Parent_Companies/3_top_parent_companies_basic.md)
 * [Extended](https://github.com/atamalu/covid_loans/blob/master/3_Top_Parent_Companies/3_top_parent_companies.md) 
 * [Results](https://github.com/atamalu/covid_loans/blob/master/0_Results/3_top_10_companies_results.md)
