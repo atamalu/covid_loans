@@ -1,1 +1,5 @@
-asdf
+## About
+
+U.S. citizens were not provided with much transparency on CARES Act spending. Curious taxpayers have the right to know who their money is being distributed to. Because of this, <i>Good Jobs First</i> and <i>Grassroot Connection</i> released a project providing CARES Act loan & grant recipient data gathered through SEC filings. They also include a good bit of information on company accountability. For more details on the data, please see [their website](https://covidstimuluswatch.org/sources).
+
+I used data to get a better idea of what industries and companies were impacted the most by the COVID-19 pandemic; along with who was provided grants over loans, monetary amounts, and whatever else came to mind. Ultimately, I decided that a dashboard would be the best way to display this data to the general public.
