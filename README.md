@@ -1,6 +1,6 @@
 # U.S. CARES Act Data 
 
-<b>Update: Newer data has been released under a different format. I will not be adjusting the dashboard or markdowns, but I will leave them up for people to reference in coding their own.</b>
+<b>Update: Newer, more complete data has been released under a different format. I will not be adjusting the dashboard or markdowns, but I will leave them up for people to reference in coding their own.</b>
   
 For the dashboard, please click [here](https://atamalu.shinyapps.io/covid_loans/).
 
