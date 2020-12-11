@@ -12,12 +12,13 @@ Since I first released this project, much more information has been released - w
 
 The dashboard provides tables and graphs of grant, loan, and contract totals awarded by each U.S. agency with options to group by company industry, sector, program, or ownership structure.
 
-#### Notes
+#### Notes and (maybe) future fixes
 
 * scaling for the graphs tends to cut off beginning or end text on mobile devices
 * graphs are not available for "Overall" as a grouping variable because there is only one piece of data (resulting in one bar)
 * since COVID Stimulus Watch only allows downloading 5000 entries at a time, the data was gathered by manually going through each company's parent sector to get a more complete picture
-* `Grouping Var = Industry` `Award Type = Loan` returns an error, which is from a failure to render on shinyapps.io. This is most likely because the very large number of rows
+* `Grouping Variable = Industry` `Award Type = Loan` returns an error, which is from a failure to render on shinyapps.io. This is most likely because the very large number of rows
+* if you open a graph where `Grouping Variable` is not "Overall", the next time you move to `Grouping Variable = Overall`, the option to render a graph appears (it is usually hidden when the user selects the `Grouping Variable`)
 
 ### Resources
 
